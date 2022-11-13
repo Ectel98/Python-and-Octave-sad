@@ -1,3 +1,11 @@
+
+##
+##References
+##
+##Goldberger, A., L. Amaral, L. Glass, J. Hausdorff, P. C. Ivanov, R. Mark, J. E. Mietus, G. B. Moody, C. K. Peng, and H. E. Stanley. "PhysioBank, PhysioToolkit, and PhysioNet: Components of a new research resource for complex physiologic signals. Circulation [Online]. 101 (23), pp. e215–e220." (2000).
+##
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import hilbert
