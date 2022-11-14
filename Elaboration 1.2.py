@@ -1,4 +1,3 @@
-
 ##
 ##References
 ##
@@ -17,7 +16,7 @@ def run(a):
 
     l = read_file(a)                                    #Lettura degli intervalli dal file
 
-    l = normalizzazione(l,400,2000)                     #400 e 2000ms sono il minimo e il massimo intervallo R-R, i valori inferiori o superiori vengono scartati 
+    l = normalizzazione(l,400,1500)                     #400 e 2000ms sono il minimo e il massimo intervallo R-R, i valori inferiori o superiori vengono scartati 
 
     l,t = time_vector(l)                                #Associazione di un istante temporale agli intervalli 
 
@@ -663,6 +662,9 @@ def interv(p_times):  #Determinazione intervalli
     win = 300
     mini = 900
 
+    plot_point_x=[0]*2
+    plot_point_y=[0]*2
+
 
     start_time = []
     end_time = []
@@ -696,6 +698,12 @@ def interv(p_times):  #Determinazione intervalli
                 else:
                     start_time.append(time.strftime('%H:%M:%S', time.gmtime(runstart0)))
                     end_time.append(time.strftime('%H:%M:%S', time.gmtime(runend0 + win)))
+                    
+                    plot_point_y[0]=runstart0                                       
+                    plot_point_y[1]=runend0 + win
+                    plt.scatter(plot_point_y,plot_point_x,c ="orange")
+                    plt.plot(plot_point_y,plot_point_x,c ="orange")
+                    
                     sumi += runend0-runstart0+win
                     runstart0 = runstart
                     runend0 = lasttime
@@ -714,11 +722,23 @@ def interv(p_times):  #Determinazione intervalli
             runflag = False
         start_time.append(time.strftime('%H:%M:%S', time.gmtime(runstart0)))
         end_time.append(time.strftime('%H:%M:%S', time.gmtime(runend0 + win)))
+                    
+        plot_point_y[0]=runstart0                                       
+        plot_point_y[1]=runend0 + win
+        plt.scatter(plot_point_y,plot_point_x,c ="orange")
+        plt.plot(plot_point_y,plot_point_x,c ="orange")
+        
         sumi += runend0-runstart0+win
 
     if (runflag):
         start_time.append(time.strftime('%H:%M:%S', time.gmtime(runstart)))
         end_time.append(time.strftime('%H:%M:%S', time.gmtime(lasttime + win)))
+
+        plot_point_y[0]=runstart                                    
+        plot_point_y[1]=lasttime + win
+        plt.scatter(plot_point_y,plot_point_x,c ="orange")
+        plt.plot(plot_point_y,plot_point_x,c ="orange")
+
         sumi += lasttime-runstart+win
         
     somma = time.strftime('%H:%M:%S', time.gmtime(sumi))
@@ -728,7 +748,6 @@ def interv(p_times):  #Determinazione intervalli
         print("Start: "+ start_time[i]+ "End: " + end_time[i])
     print("Somma:" + somma, sumi)
 
-    return 0
 
 run('a03') # 'a03' Nome del file
 
