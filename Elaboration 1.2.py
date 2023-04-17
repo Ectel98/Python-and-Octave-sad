@@ -81,7 +81,7 @@ def normalizzazione(l,minn,maxx): #Normalizzaione degli intervalli: vengono rimo
     for i in range(0,len(l)):
         l[i]=(float(l[i]))
 
-    print("Spete un moment...")
+    print("Elaborazione in corso...")
 
     return l
 
@@ -347,7 +347,7 @@ def ht(time_smooth,l_smooth):  #Trasformata di Hilbert
 
 
     # Ampl and phase 
-    for i in range(lfilt//2+1,(npt-(lfilt//2))+1):       #Da sistemare nell'app java
+    for i in range(lfilt//2+1,(npt-(lfilt//2))+1):       
         xt = l_smooth[i]
         xht = xh[i]
         ampl[i] = (float)(sqrt(xt*xt+xht*xht))
@@ -570,7 +570,7 @@ def sdv(amp_norm,omega_filt,time_ht_filt,thres):  #Deviazione stadard ecc...
     e = 1
     while (i<len(time_ht_filt)):
 
-        while (time_ht_filt[i]< v_start and i<len(time_ht_filt)):  #Serve davvero ? non è sempre vera ?
+        while (time_ht_filt[i]< v_start and i<len(time_ht_filt)):  
             i+=1
 
         if (len(time_ht_filt)-i<incr):
